@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  node1:
+    build:
+      context: nodes
+      dockerfile: Dockerfile
+    ports:
+      - 5000:5000
+    networks:
+      nodes-network:
+        ipv4_address: 192.168.1.2
+  node2:
+    build:
+      context: nodes
+      dockerfile: Dockerfile
+    ports:
+      - 5001:5000
+    networks:
+      nodes-network:
+        ipv4_address: 192.168.1.3
+  node3:
+    build:
+      context: nodes
+      dockerfile: Dockerfile
+    ports:
+      - 5002:5000
+    networks:
+      nodes-network:
+        ipv4_address: 192.168.1.4
+networks:
+  nodes-network:
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
